@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from 'react';
 
-import { FlatList, Image, ScrollView, Text, View } from "react-native";
-import { styles } from "./Home.style.ts";
-import axios from "axios";
+import {FlatList, Image, ScrollView, Text, View} from 'react-native';
+import {styles} from './Home.style.ts';
+import axios from 'axios';
 
 type renderItemProps = {
   item: {
     id?: number;
     title: string;
     poster_path: string;
-    mediaType?: "movie" | "TV";
+    mediaType?: 'movie' | 'TV';
   };
 };
 
@@ -22,50 +22,48 @@ const Home = () => {
   const fetchMedia = async () => {
     try {
       const responsePopularMovies = await axios.get(
-        "https://api.themoviedb.org/3/movie/popular?language=fr-FR&page=1",
+        'https://api.themoviedb.org/3/movie/popular?language=fr-FR&page=1',
         {
           params: {
             include_adult: false,
-            language: "en-US",
-            region: "FR",
+            language: 'en-US',
+            region: 'FR',
             page: 1,
           },
           headers: {
-            Accept: "application/json",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZmVkMDliOGQwNjBjMzVmYzU2YWViNWMyZmRkMWViZCIsInN1YiI6IjY1ZGUwNjhiOWFlNjEzMDE2Mzc0OGRjNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.tTCH2-78thqXP1-YtCDTHcPOW9COl8hHQsTIuOZ-B-w",
+            Accept: 'application/json',
+            Authorization: `Bearer ${process.env.API_KEY}`,
           },
-        }
+        },
       );
 
-      const popularMovies = responsePopularMovies.data.results.map(
+      const newPopularMovies = responsePopularMovies.data.results.map(
         (movie: any) => ({
           id: movie.id,
           title: movie.title,
           poster_path: movie.poster_path,
-          mediaType: "movie",
-        })
+          mediaType: 'movie',
+        }),
       );
 
-      setPopularMovies(popularMovies);
+      setPopularMovies(newPopularMovies);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error('Error fetching data:', error);
     }
     try {
       const responsePopularTVShows = await axios.get(
-        "https://api.themoviedb.org/3/tv/popular?language=en-US&page=1",
+        'https://api.themoviedb.org/3/tv/popular?language=en-US&page=1',
         {
           params: {
             include_adult: false,
-            language: "fr-FR",
+            language: 'fr-FR',
             page: 1,
           },
           headers: {
-            Accept: "application/json",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZmVkMDliOGQwNjBjMzVmYzU2YWViNWMyZmRkMWViZCIsInN1YiI6IjY1ZGUwNjhiOWFlNjEzMDE2Mzc0OGRjNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.tTCH2-78thqXP1-YtCDTHcPOW9COl8hHQsTIuOZ-B-w",
+            Accept: 'application/json',
+            Authorization: `Bearer ${process.env.API_KEY}`,
           },
-        }
+        },
       );
 
       const popularTVShows = responsePopularTVShows.data.results.map(
@@ -73,72 +71,70 @@ const Home = () => {
           id: show.id,
           title: show.name,
           poster_path: show.poster_path,
-          mediaType: "TV",
-        })
+          mediaType: 'TV',
+        }),
       );
       setPopularSeries(popularTVShows);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error('Error fetching data:', error);
     }
     try {
       const responseNowPlayingMovies = await axios.get(
-        "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
+        'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1',
         {
           params: {
             include_adult: false,
-            language: "en-US",
+            language: 'en-US',
             page: 1,
           },
           headers: {
-            Accept: "application/json",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZmVkMDliOGQwNjBjMzVmYzU2YWViNWMyZmRkMWViZCIsInN1YiI6IjY1ZGUwNjhiOWFlNjEzMDE2Mzc0OGRjNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.tTCH2-78thqXP1-YtCDTHcPOW9COl8hHQsTIuOZ-B-w",
+            Accept: 'application/json',
+            Authorization: `Bearer ${process.env.API_KEY}`,
           },
-        }
+        },
       );
 
-      const nowPlayingMovies = responseNowPlayingMovies.data.results.map(
+      const newNowPlayingMovies = responseNowPlayingMovies.data.results.map(
         (movie: any) => ({
           id: movie.id,
           title: movie.title,
           poster_path: movie.poster_path,
-          mediaType: "movie",
-        })
+          mediaType: 'movie',
+        }),
       );
 
-      setNowPlayingMovies(nowPlayingMovies);
+      setNowPlayingMovies(newNowPlayingMovies);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error('Error fetching data:', error);
     }
     try {
       const responseUpcomingMovies = await axios.get(
-        "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1",
+        'https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1',
         {
           params: {
             include_adult: false,
-            language: "en-US",
+            language: 'en-US',
             page: 1,
           },
           headers: {
-            Accept: "application/json",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZmVkMDliOGQwNjBjMzVmYzU2YWViNWMyZmRkMWViZCIsInN1YiI6IjY1ZGUwNjhiOWFlNjEzMDE2Mzc0OGRjNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.tTCH2-78thqXP1-YtCDTHcPOW9COl8hHQsTIuOZ-B-w",
+            Accept: 'application/json',
+            Authorization: `Bearer ${process.env.API_KEY}`,
           },
-        }
+        },
       );
 
-      const upcomingMovies = responseUpcomingMovies.data.results.map(
+      const newUpcomingMovies = responseUpcomingMovies.data.results.map(
         (movie: any) => ({
           id: movie.id,
           title: movie.title,
           poster_path: movie.poster_path,
-          mediaType: "movie",
-        })
+          mediaType: 'movie',
+        }),
       );
 
-      setUpcomingMovies(upcomingMovies);
+      setUpcomingMovies(newUpcomingMovies);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error('Error fetching data:', error);
     }
   };
 
@@ -146,7 +142,7 @@ const Home = () => {
     fetchMedia();
   }, []);
 
-  const renderItem = ({ item }: renderItemProps) => (
+  const renderItem = ({item}: renderItemProps) => (
     <>
       <View style={styles.itemContainer}>
         <Image
