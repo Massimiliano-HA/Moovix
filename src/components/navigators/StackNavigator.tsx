@@ -6,6 +6,7 @@ import HomeScreen from '../../screens/HomeScreen/HomeScreen.tsx';
 import SearchPage from '../../screens/SearchScreen/SearchPage.tsx';
 import DetailsPage from '../Details/DetailsPage.tsx';
 import TabNavigator from './TabNavigator.tsx';
+import ProfileScreen from '../../screens/ProfileScreen/ProfileScreen.tsx';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,7 +24,7 @@ const AppNavigator = () => {
       <Stack.Screen
         name="TabNavigator"
         options={{
-          title: 'Movix',
+          title: 'Moovix',
         }}
         component={TabNavigator}
       />
@@ -61,6 +62,13 @@ const AppNavigator = () => {
           title: 'Detail',
         }}
         component={DetailsPage}
+      />
+      <Stack.Screen
+        name="ProfileScreen"
+        options={{
+          title: 'Profil',
+        }}
+        component={ProfileScreen}
       />
     </Stack.Navigator>
   );

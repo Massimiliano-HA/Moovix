@@ -1,14 +1,14 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native';
 import {styles} from '../../../global.style.ts';
-import Home from '../../components/Home/Home.tsx';
+import Profile from '../../components/Profile/Profile.tsx';
 
-const HomeScreen = ({}) => {
+const ProfileScreen = ({}) => {
   return (
     <SafeAreaView style={styles.screen}>
-      <Home />
+      <Profile />
     </SafeAreaView>
   );
 };
 
-export default HomeScreen;
+export default ProfileScreen;

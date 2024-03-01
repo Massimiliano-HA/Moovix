@@ -1,12 +1,12 @@
-import { StyleSheet } from "react-native";
+import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   sectionContainer: {
-    flexDirection: "column",
+    flexDirection: 'column',
     flex: 1,
   },
   itemContainer: {
-    alignItems: "center",
+    alignItems: 'center',
     marginRight: 10,
     width: 100, // Définir la même largeur que l'itemImage
   },
@@ -18,14 +18,14 @@ export const styles = StyleSheet.create({
   itemTitle: {
     marginTop: 5,
     fontSize: 12,
-    fontWeight: "600",
-    color: "white",
-    textAlign: "center", // Centrer le texte
+    fontWeight: '600',
+    color: 'white',
+    textAlign: 'center', // Centrer le texte
   },
   title: {
     fontSize: 20,
-    fontWeight: "900",
-    color: "white",
+    fontWeight: '900',
+    color: 'white',
     marginLeft: 10,
     marginBottom: 20,
   },
@@ -34,8 +34,8 @@ export const styles = StyleSheet.create({
   },
   flatListTitle: {
     fontSize: 16,
-    fontWeight: "bold",
-    color: "white",
+    fontWeight: 'bold',
+    color: 'white',
     marginLeft: 5,
     marginBottom: 10,
   },

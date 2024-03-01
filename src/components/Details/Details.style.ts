@@ -37,6 +37,6 @@ export const styles = StyleSheet.create({
     fontSize: 15,
   },
   textContainer: {
-    flexDirection: 'column'
-  }
+    flexDirection: 'column',
+  },
 });
