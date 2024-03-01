@@ -21,7 +21,7 @@ const WatchlistItem = ({item}: WatchlistItemProps) => {
   const navigation = useNavigation();
 
   const handlePress = () => {
-    navigation.navigate('Details', {media: item});
+    navigation.navigate('DetailsPage', {media: item});
   };
 
   return (
