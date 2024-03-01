@@ -1,7 +1,7 @@
-import React from "react";
-import { SafeAreaView } from "react-native";
-import { styles } from "../../../global.style.ts";
-import Details from "../../components/Details/Details.tsx";
+import React from 'react';
+import {SafeAreaView} from 'react-native';
+import {styles} from '../../../global.style.ts';
+import Details from '../../components/Details/Details.tsx';
 
 const DetailsScreen = ({}) => {
   return (
