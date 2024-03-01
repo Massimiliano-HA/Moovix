@@ -6,6 +6,7 @@ import SearchPage from '../../screens/SearchScreen/SearchPage.tsx';
 import WatchlistScreen from '../../screens/WatchlistScreen/WatchlistScreen.tsx';
 import {View} from 'react-native';
 import {styles} from './navigators.style.ts';
+import ProfileScreen from '../../screens/ProfileScreen/ProfileScreen.tsx';
 
 const Tab = createBottomTabNavigator();
 
@@ -54,6 +55,16 @@ function TabNavigator() {
           ),
         }}
         component={WatchlistScreen}
+      />
+      <Tab.Screen
+        name="Profile"
+        options={{
+          tabBarLabel: 'Mon profil',
+          tabBarIcon: ({color, size}) => (
+            <MaterialCommunityIcons name="account" color={color} size={size} />
+          ),
+        }}
+        component={ProfileScreen}
       />
     </Tab.Navigator>
   );

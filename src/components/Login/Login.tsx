@@ -1,3 +1,5 @@
+// Login.tsx
+
 import React, {useState, useEffect, useCallback} from 'react';
 import {
   Text,
@@ -8,7 +10,8 @@ import {
   Alert,
 } from 'react-native';
 import {styles} from './Login.style.ts';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import {loginUser} from './../../redux/reducers/userReducer.ts';
 import {useNavigation} from '@react-navigation/native';
 
 const Login = ({}) => {
@@ -18,6 +21,8 @@ const Login = ({}) => {
   const [nameError, setNameError] = useState(false);
 
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const users = useSelector((state: any) => state.user.users);
 
   const goToRegister = useCallback(() => {
     navigation.navigate('Register');
@@ -26,8 +31,6 @@ const Login = ({}) => {
   const goToHome = useCallback(() => {
     navigation.navigate('TabNavigator');
   }, [navigation]);
-
-  const users = useSelector((state: any) => state.user.users);
 
   useEffect(() => {
     setNameError(username === '');
@@ -48,12 +51,13 @@ const Login = ({}) => {
       (user: any) => user.username === username && user.password === password,
     );
     if (foundUser) {
+      dispatch(loginUser({...foundUser, isAuthenticated: true}));
       Alert.alert('Connexion réussie', `Bienvenue, ${username} !`);
       goToHome();
     } else {
       Alert.alert('Erreur', "Nom d'utilisateur ou mot de passe incorrect.");
     }
-  }, [username, password, users, goToHome]);
+  }, [username, password, users, goToHome, dispatch]);
 
   return (
     <KeyboardAvoidingView style={styles.sectionContainer} behavior="padding">

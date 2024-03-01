@@ -37,8 +37,7 @@ const SearchPage: React.FC<SearchPageProps> = ({navigation}) => {
             },
             headers: {
               Accept: 'application/json',
-              Authorization:
-                'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZmVkMDliOGQwNjBjMzVmYzU2YWViNWMyZmRkMWViZCIsInN1YiI6IjY1ZGUwNjhiOWFlNjEzMDE2Mzc0OGRjNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.tTCH2-78thqXP1-YtCDTHcPOW9COl8hHQsTIuOZ-B-w',
+              Authorization: `Bearer ${process.env.API_KEY}`,
             },
           },
         );
@@ -54,8 +53,7 @@ const SearchPage: React.FC<SearchPageProps> = ({navigation}) => {
             },
             headers: {
               Accept: 'application/json',
-              Authorization:
-                'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZmVkMDliOGQwNjBjMzVmYzU2YWViNWMyZmRkMWViZCIsInN1YiI6IjY1ZGUwNjhiOWFlNjEzMDE2Mzc0OGRjNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.tTCH2-78thqXP1-YtCDTHcPOW9COl8hHQsTIuOZ-B-w',
+              Authorization: `Bearer ${process.env.API_KEY}`,
             },
           },
         );
