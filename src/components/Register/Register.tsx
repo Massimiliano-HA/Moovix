@@ -13,6 +13,7 @@ import {launchImageLibrary, MediaType} from 'react-native-image-picker';
 import {useDispatch, useSelector} from 'react-redux';
 import {createUser} from './../../redux/reducers/userReducer.ts';
 import {useNavigation} from '@react-navigation/native';
+import {check, request, PERMISSIONS, RESULTS} from 'react-native-permissions';
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -41,24 +42,59 @@ const Register = () => {
     mediaType: 'photo' as MediaType,
   };
 
-  const selectImage = () => {
-    launchImageLibrary(options, response => {
-      if (response.didCancel) {
-        console.log('User cancelled image picker');
-      } else if (response.errorMessage) {
-        console.log('ImagePicker Error: ', response.errorCode);
-      } else if (response.assets && response.assets.length > 0) {
-        const selectedImageUri = response.assets[0].uri;
-        console.log(response.assets[0]);
+  const selectImage = async () => {
+    try {
+      const permissionStatus = await check(PERMISSIONS.IOS.PHOTO_LIBRARY);
+      if (permissionStatus === RESULTS.GRANTED) {
+        launchImageLibrary(options, response => {
+          if (response.didCancel) {
+            console.log('User cancelled image picker');
+          } else if (response.errorMessage) {
+            console.log('ImagePicker Error: ', response.errorCode);
+          } else if (response.assets && response.assets.length > 0) {
+            const selectedImageUri = response.assets[0].uri;
+            console.log(response.assets[0]);
 
-        if (selectedImageUri) {
-          setAvatar(selectedImageUri);
+            if (selectedImageUri) {
+              setAvatar(selectedImageUri);
+            } else {
+              setAvatar(null);
+              console.error("URI de l'image sélectionnée est undefined.");
+            }
+          }
+        });
+      } else {
+        const permissionRequestResult = await request(
+          PERMISSIONS.IOS.PHOTO_LIBRARY,
+        );
+        if (permissionRequestResult === RESULTS.GRANTED) {
+          console.log('Permission accordée');
+          launchImageLibrary(options, handleImageSelection);
         } else {
-          setAvatar(null);
-          console.error("URI de l'image sélectionnée est undefined.");
+          console.log('Permission refusée');
         }
       }
-    });
+    } catch (error) {
+      console.warn(error);
+    }
+  };
+
+  const handleImageSelection = (response: any) => {
+    if (response.didCancel) {
+      console.log("Sélection d'image annulée");
+    } else if (response.errorMessage) {
+      console.log("Erreur de l'ImagePicker:", response.errorCode);
+    } else if (response.assets && response.assets.length > 0) {
+      const selectedImageUri = response.assets[0].uri;
+      console.log(response.assets[0]);
+
+      if (selectedImageUri) {
+        setAvatar(selectedImageUri);
+      } else {
+        setAvatar(null);
+        console.error("URI de l'image sélectionnée est undefined.");
+      }
+    }
   };
 
   const handleRegistration = useCallback(() => {
