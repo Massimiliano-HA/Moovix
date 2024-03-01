@@ -44,13 +44,12 @@ const Home = () => {
           },
           headers: {
             Accept: 'application/json',
-            Authorization:
-              'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZmVkMDliOGQwNjBjMzVmYzU2YWViNWMyZmRkMWViZCIsInN1YiI6IjY1ZGUwNjhiOWFlNjEzMDE2Mzc0OGRjNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.tTCH2-78thqXP1-YtCDTHcPOW9COl8hHQsTIuOZ-B-w',
+            Authorization: `Bearer ${process.env.API_KEY}`,
           },
         },
       );
 
-      const popularMovies = responsePopularMovies.data.results.map(
+      const newPopularMovies = responsePopularMovies.data.results.map(
         (movie: any) => ({
           id: movie.id,
           title: movie.title,
@@ -62,7 +61,7 @@ const Home = () => {
         }),
       );
 
-      setPopularMovies(popularMovies);
+      setPopularMovies(newPopularMovies);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -77,8 +76,7 @@ const Home = () => {
           },
           headers: {
             Accept: 'application/json',
-            Authorization:
-              'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZmVkMDliOGQwNjBjMzVmYzU2YWViNWMyZmRkMWViZCIsInN1YiI6IjY1ZGUwNjhiOWFlNjEzMDE2Mzc0OGRjNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.tTCH2-78thqXP1-YtCDTHcPOW9COl8hHQsTIuOZ-B-w',
+            Authorization: `Bearer ${process.env.API_KEY}`,
           },
         },
       );
@@ -109,13 +107,12 @@ const Home = () => {
           },
           headers: {
             Accept: 'application/json',
-            Authorization:
-              'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZmVkMDliOGQwNjBjMzVmYzU2YWViNWMyZmRkMWViZCIsInN1YiI6IjY1ZGUwNjhiOWFlNjEzMDE2Mzc0OGRjNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.tTCH2-78thqXP1-YtCDTHcPOW9COl8hHQsTIuOZ-B-w',
+            Authorization: `Bearer ${process.env.API_KEY}`,
           },
         },
       );
 
-      const nowPlayingMovies = responseNowPlayingMovies.data.results.map(
+      const newNowPlayingMovies = responseNowPlayingMovies.data.results.map(
         (movie: any) => ({
           id: movie.id,
           title: movie.title,
@@ -127,7 +124,7 @@ const Home = () => {
         }),
       );
 
-      setNowPlayingMovies(nowPlayingMovies);
+      setNowPlayingMovies(newNowPlayingMovies);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -142,13 +139,12 @@ const Home = () => {
           },
           headers: {
             Accept: 'application/json',
-            Authorization:
-              'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZmVkMDliOGQwNjBjMzVmYzU2YWViNWMyZmRkMWViZCIsInN1YiI6IjY1ZGUwNjhiOWFlNjEzMDE2Mzc0OGRjNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.tTCH2-78thqXP1-YtCDTHcPOW9COl8hHQsTIuOZ-B-w',
+            Authorization: `Bearer ${process.env.API_KEY}`,
           },
         },
       );
 
-      const upcomingMovies = responseUpcomingMovies.data.results.map(
+      const newUpcomingMovies = responseUpcomingMovies.data.results.map(
         (movie: any) => ({
           id: movie.id,
           title: movie.title,
@@ -160,7 +156,7 @@ const Home = () => {
         }),
       );
 
-      setUpcomingMovies(upcomingMovies);
+      setUpcomingMovies(newUpcomingMovies);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
