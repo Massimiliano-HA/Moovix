@@ -1,13 +1,29 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
+interface WatchlistItem {
+  id: number;
+  title?: string;
+  name?: string;
+  overview: string;
+  poster_path: string;
+  release_date?: string;
+  first_air_date?: string;
+  vote_average: number;
+  mediaType: 'movie' | 'TV' | string;
+}
+
+interface AuthenticatedUser {
+  username: string;
+  password: string;
+  avatar: string | null;
+  isAuthenticated: boolean;
+  watchlist: WatchlistItem[];
+}
+
 interface User {
   username: string;
   password: string;
   avatar: string | null;
-}
-
-interface AuthenticatedUser extends User {
-  isAuthenticated: boolean;
 }
 
 interface UserState {
@@ -33,8 +49,22 @@ const userSlice = createSlice({
     logoutUser(state) {
       state.currentUser = null;
     },
+    addToWatchlist(state, action: PayloadAction<WatchlistItem[]>) {
+      if (state.currentUser) {
+        if (!state.currentUser.watchlist) {
+          state.currentUser.watchlist = [];
+        }
+        state.currentUser.watchlist.push(...action.payload);
+      }
+    },
+    setWatchlist(state, action: PayloadAction<WatchlistItem[]>) {
+      if (state.currentUser) {
+        state.currentUser.watchlist = action.payload;
+      }
+    },
   },
 });
 
-export const {createUser, loginUser, logoutUser} = userSlice.actions;
+export const {createUser, loginUser, logoutUser, addToWatchlist, setWatchlist} =
+  userSlice.actions;
 export default userSlice.reducer;

@@ -39,4 +39,16 @@ export const styles = StyleSheet.create({
   textContainer: {
     flexDirection: 'column',
   },
+  button: {
+    backgroundColor: 'red',
+    padding: 10,
+    marginBottom: 10,
+    marginTop: 20,
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
+  },
 });

@@ -13,6 +13,12 @@ const Profile = ({}) => {
     navigation.navigate('Login');
   }, [navigation]);
 
+  if (currentUser) {
+    console.log(currentUser.watchlist);
+  } else {
+    console.log("L'utilisateur n'est pas connecté.");
+  }
+
   return (
     <SafeAreaView style={styles.sectionContainer}>
       <Text style={styles.title}>Profil de l'utilisateur</Text>
