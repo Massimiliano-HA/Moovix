@@ -7,6 +7,7 @@ import SearchPage from '../../screens/SearchScreen/SearchPage.tsx';
 import DetailsPage from '../Details/DetailsPage.tsx';
 import TabNavigator from './TabNavigator.tsx';
 import ProfileScreen from '../../screens/ProfileScreen/ProfileScreen.tsx';
+import WatchlistScreen from '../../screens/WatchlistScreen/WatchlistScreen.tsx';
 
 const Stack = createNativeStackNavigator();
 
@@ -69,6 +70,13 @@ const AppNavigator = () => {
           title: 'Profil',
         }}
         component={ProfileScreen}
+      />
+      <Stack.Screen
+        name="Watchlist"
+        options={{
+          title: 'Watchlist',
+        }}
+        component={WatchlistScreen}
       />
     </Stack.Navigator>
   );
