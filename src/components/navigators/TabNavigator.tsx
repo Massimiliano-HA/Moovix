@@ -6,6 +6,7 @@ import SearchPage from '../../screens/SearchScreen/SearchPage.tsx';
 import WatchlistScreen from '../../screens/WatchlistScreen/WatchlistScreen.tsx';
 import {View} from 'react-native';
 import {styles} from './navigators.style.ts';
+import ProfileScreen from '../../screens/ProfileScreen/ProfileScreen.tsx';
 
 const Tab = createBottomTabNavigator();
 

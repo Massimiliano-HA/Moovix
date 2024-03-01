@@ -23,7 +23,7 @@ const AppNavigator = () => {
       <Stack.Screen
         name="TabNavigator"
         options={{
-          title: 'Movix',
+          title: 'Moovix',
         }}
         component={TabNavigator}
       />
