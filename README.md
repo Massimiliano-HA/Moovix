@@ -1,5 +1,7 @@
 # Moovix
 
+## API : [TMDB](https://developer.themoviedb.org/reference/intro/getting-started)
+
 ## Step 1: Start the Metro server
 
 First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
