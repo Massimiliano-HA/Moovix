@@ -56,6 +56,16 @@ function TabNavigator() {
         }}
         component={WatchlistScreen}
       />
+      <Tab.Screen
+        name="Profile"
+        options={{
+          tabBarLabel: 'Mon profil',
+          tabBarIcon: ({color, size}) => (
+            <MaterialCommunityIcons name="account" color={color} size={size} />
+          ),
+        }}
+        component={ProfileScreen}
+      />
     </Tab.Navigator>
   );
 }

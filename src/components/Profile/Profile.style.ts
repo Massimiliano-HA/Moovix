@@ -1,42 +1,44 @@
+// Profile.style.ts
+
 import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   sectionContainer: {
-    flexDirection: 'column',
     flex: 1,
-  },
-  itemContainer: {
+    justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 10,
-    width: 100,
   },
-  itemImage: {
-    width: 100,
-    height: 150,
-    borderRadius: 10,
+  view: {
+    alignItems: 'center',
   },
-  itemTitle: {
-    marginTop: 5,
-    fontSize: 12,
-    fontWeight: '600',
-    color: 'white',
-    textAlign: 'center',
+  avatar: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    marginVertical: 20,
   },
   title: {
     fontSize: 20,
-    fontWeight: '900',
-    color: 'white',
-    marginLeft: 10,
-    marginBottom: 20,
-  },
-  flatListContainer: {
-    marginBottom: 20,
-  },
-  flatListTitle: {
-    fontSize: 16,
     fontWeight: 'bold',
+    marginBottom: 20,
     color: 'white',
-    marginLeft: 5,
+  },
+  text: {
+    fontSize: 16,
+    fontWeight: '600',
     marginBottom: 10,
+    color: 'white',
+  },
+  button: {
+    backgroundColor: 'red',
+    padding: 10,
+    marginBottom: 10,
+    marginTop: 20,
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
   },
 });
