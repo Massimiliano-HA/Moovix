@@ -7,13 +7,20 @@ import {
   View,
   KeyboardAvoidingView,
   Alert,
+  Platform,
 } from 'react-native';
 import {styles} from './Register.style.ts';
 import {launchImageLibrary, MediaType} from 'react-native-image-picker';
 import {useDispatch, useSelector} from 'react-redux';
 import {createUser} from './../../redux/reducers/userReducer.ts';
 import {useNavigation} from '@react-navigation/native';
-import {check, request, PERMISSIONS, RESULTS} from 'react-native-permissions';
+import {
+  check,
+  request,
+  PERMISSIONS,
+  RESULTS,
+  Permission,
+} from 'react-native-permissions';
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -42,33 +49,23 @@ const Register = () => {
     mediaType: 'photo' as MediaType,
   };
 
+  let permission: Permission;
+
   const selectImage = async () => {
     try {
-      const permissionStatus = await check(PERMISSIONS.IOS.PHOTO_LIBRARY);
-      if (permissionStatus === RESULTS.GRANTED) {
-        launchImageLibrary(options, response => {
-          if (response.didCancel) {
-            console.log('User cancelled image picker');
-          } else if (response.errorMessage) {
-            console.log('ImagePicker Error: ', response.errorCode);
-          } else if (response.assets && response.assets.length > 0) {
-            const selectedImageUri = response.assets[0].uri;
-            console.log(response.assets[0]);
+      if (Platform.OS === 'ios') {
+        permission = PERMISSIONS.IOS.PHOTO_LIBRARY;
+      } else if (Platform.OS === 'android') {
+        permission = PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE;
+      }
 
-            if (selectedImageUri) {
-              setAvatar(selectedImageUri);
-            } else {
-              setAvatar(null);
-              console.error("URI de l'image sélectionnée est undefined.");
-            }
-          }
-        });
+      const permissionStatus = await check(permission);
+
+      if (permissionStatus === RESULTS.GRANTED) {
+        launchImageLibrary(options, handleImageSelection);
       } else {
-        const permissionRequestResult = await request(
-          PERMISSIONS.IOS.PHOTO_LIBRARY,
-        );
+        const permissionRequestResult = await request(permission);
         if (permissionRequestResult === RESULTS.GRANTED) {
-          console.log('Permission accordée');
           launchImageLibrary(options, handleImageSelection);
         } else {
           console.log('Permission refusée');
